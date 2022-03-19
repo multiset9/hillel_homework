@@ -1,8 +1,8 @@
 
 
-def check_ip():
+def new_function():
     print("Hello world")
 
 
 if __name__ == '__main__':
-    check_ip()
+    new_function()
