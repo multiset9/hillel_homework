@@ -22,10 +22,8 @@ print("2. List of even values - {}".format(generated_list))
 # 3. Найти общие ключи в двух словарях
 dict_one = {"a": 1, "b": 2, "c": 3, "d": 4}
 dict_two = {"a": 6, "b": 7, "z": 20, "x": 40}
-keys_first_dict = [key for key, value in dict_one.items()]
-keys_second_dict = [key for key, value in dict_two.items()]
-print("3. The same keys in the dicts - {}".format(list(set(
-    keys_first_dict).intersection(set(keys_second_dict)))))
+print("3. The same keys in the dicts - {}"
+      .format(set(dict_one.keys()).intersection(dict_two.keys())))
 
 # 4. Сгенерировать dict() из списка ключей ниже по формуле (key : key* key)
 keys = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
