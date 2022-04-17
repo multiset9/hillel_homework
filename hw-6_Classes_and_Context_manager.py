@@ -29,21 +29,21 @@ class IpProcessing:
 ip_addresses = ["10.11.12.13", "10.11.12.14", "10.11.12.15"]
 ip_processing = IpProcessing(ip_addresses)
 
-# # 1) Получить список IP адресов в развернутом виде
-# # (пример 10.11.12.13 -> 13.12.11.10)
-# print("Reversed IP addresses:")
-# print(ip_processing.get_reversed_ip())
-# print("-"*100)
-# # 2) Получить список IP адресов без первых октетов
-# # (пример 0.11.12.13 -> 11.12.13)
-# print("IP addresses without first octets:")
-# print(ip_processing.get_ip_without_first_octet())
-# print("-"*100)
-# # 3) Получить список последних октетов IP адресов
-# # (пример 10.11.12.13 -> 13)
-# print("IP addresses last octets:")
-# print(ip_processing.get_last_octet())
-# print("-"*100)
+# 1) Получить список IP адресов в развернутом виде
+# (пример 10.11.12.13 -> 13.12.11.10)
+print("Reversed IP addresses:")
+print(ip_processing.get_reversed_ip())
+print("-"*100)
+# 2) Получить список IP адресов без первых октетов
+# (пример 0.11.12.13 -> 11.12.13)
+print("IP addresses without first octets:")
+print(ip_processing.get_ip_without_first_octet())
+print("-"*100)
+# 3) Получить список последних октетов IP адресов
+# (пример 10.11.12.13 -> 13)
+print("IP addresses last octets:")
+print(ip_processing.get_last_octet())
+print("-"*100)
 
 # Задача-2
 # Вам необходимо написать
