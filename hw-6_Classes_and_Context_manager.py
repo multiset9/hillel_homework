@@ -8,21 +8,18 @@ class IpProcessing:
         self.ip_addresses = ip_addresses
 
     def get_reversed_ip(self):
-        reversed_ip = []
-        for ip in self.ip_addresses:
-            reversed_ip.append(f'{ip} -> {".".join(ip.split(".")[::-1])}')
+        reversed_ip = [f'{ip} -> {".".join(ip.split(".")[::-1])}'
+                       for ip in self.ip_addresses]
         return reversed_ip
 
     def get_ip_without_first_octet(self):
-        without_first_octet = []
-        for ip in self.ip_addresses:
-            without_first_octet.append(f'{ip} -> {".".join(ip.split(".")[1::])}')
+        without_first_octet = [f'{ip} -> {".".join(ip.split(".")[1::])}'
+                               for ip in self.ip_addresses]
         return without_first_octet
 
     def get_last_octet(self):
-        last_octet = []
-        for ip in self.ip_addresses:
-            last_octet.append(f'{ip} -> {".".join(ip.split(".")[-1::])}')
+        last_octet = [f'{ip} -> {".".join(ip.split(".")[-1::])}'
+                      for ip in self.ip_addresses]
         return last_octet
 
 
