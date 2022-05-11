@@ -1,5 +1,11 @@
+"""pytest -s -v tests/."""
 
-REMOTE_HOST = "http://localhost:4444/wd/hub"
-SITE_URL = "https://www.aqa.science/admin"
-ADMIN_LOGIN = "admin"
+
+ADMIN_USERNAME = "admin"
 ADMIN_PASS = "admin123"
+
+USERNAME = "bohdan.kanivets4"
+USERNAME_PASS = "234qde4375467jkbjw"
+
+EXISTED_USERNAME = "bohdan.kanivets1"
+EXISTED_USERNAME_PASS = "234qde2JHLwef"
