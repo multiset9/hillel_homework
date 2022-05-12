@@ -1,6 +1,8 @@
 from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 
+from test_data import USERNAME
+
 
 class AdminPagesLocators:
     """Admin page"""
@@ -16,6 +18,15 @@ class AdminPagesLocators:
     LOCATOR_NOTIFICATION_ERROR = (By.XPATH, '//*[@id="user_form"]/div/fieldset/div[1]/ul/li')
     LOCATOR_LOGOUT = (By.XPATH, '//*[@id="user-tools"]/a[3]')
     LOCATOR_LOGIN_AGAIN = (By.XPATH, '//*[@id="content"]/p[2]/a')
+    LOCATOR_BTN_CHANGE_USER = (By.XPATH, '//*[@id="content-main"]/div/table/tbody/tr[2]/td[2]/a')
+    LOCATOR_USER_LINK = (By.LINK_TEXT, USERNAME)
+    LOCATOR_INPUT_FIRST_NAME = (By.XPATH, '//*[@id="id_first_name"]')
+    LOCATOR_INPUT_LAST_NAME = (By.XPATH, '//*[@id="id_last_name"]')
+    LOCATOR_BTN_SAVE_CHANGE_USER = (By.XPATH, '//*[@id="user_form"]/div/div/input[1]')
+    LOCATOR_NOTIFICATION_SUCCESS = (By.XPATH, '//*[@id="main"]/div/ul/li')
+    LOCATOR_BTN_DELETE_USER = (By.XPATH, '//*[@id="user_form"]/div/div/p/a')
+    LOCATOR_BTN_DELETE_USER_APPROVED = (By.XPATH, '//*[@id="content"]/form/div/input[2]')
+
 
 
 class AdminPage(BasePage):
@@ -52,6 +63,14 @@ class AdminPage(BasePage):
                                             LOCATOR_BTN_ADD_USER)
         add_user_button.click()
 
+    def click_change_user_button(self):
+        change_user_button = self.find_element(AdminPagesLocators.LOCATOR_BTN_CHANGE_USER)
+        change_user_button.click()
+
+    def find_and_click_by_text(self):
+        find_by_text = self.find_element(AdminPagesLocators.LOCATOR_USER_LINK)
+        find_by_text.click()
+
     def get_title_username(self):
         title_username = self.find_element(
             AdminPagesLocators.LOCATOR_TITLE_USERNAME)
@@ -67,3 +86,25 @@ class AdminPage(BasePage):
         logout_button.click()
         login_again = self.find_element(AdminPagesLocators.LOCATOR_LOGIN_AGAIN)
         login_again.click()
+
+    def enter_first_last_name(self, first_name, last_name):
+        input_first_name = self.find_element(AdminPagesLocators.LOCATOR_INPUT_FIRST_NAME)
+        input_first_name.click()
+        input_first_name.send_keys(first_name)
+        input_last_name = self.find_element(AdminPagesLocators.LOCATOR_INPUT_LAST_NAME)
+        input_last_name.click()
+        input_last_name.send_keys(last_name)
+
+    def get_notification(self):
+        notification = self.find_element(AdminPagesLocators.LOCATOR_NOTIFICATION_SUCCESS)
+        return notification.text
+
+    def click_save_changes_user(self):
+        save = self.find_element(AdminPagesLocators.LOCATOR_BTN_SAVE_CHANGE_USER)
+        save.click()
+
+    def delete_user(self):
+        delete_user = self.find_element(AdminPagesLocators.LOCATOR_BTN_DELETE_USER)
+        delete_user.click()
+        delete_user = self.find_element(AdminPagesLocators.LOCATOR_BTN_DELETE_USER_APPROVED)
+        delete_user.click()

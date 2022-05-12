@@ -29,7 +29,7 @@ def browser(run_docker):
     driver.quit()
 
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def login(browser):
     admin_page = AdminPage(browser)
     admin_page.go_to_site()

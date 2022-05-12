@@ -4,8 +4,8 @@
 ADMIN_USERNAME = "admin"
 ADMIN_PASS = "admin123"
 
-USERNAME = "bohdan.kanivets4"
-USERNAME_PASS = "234qde4375467jkbjw"
+USERNAME = "bohdan.kanivets5"
+USERNAME_PASS = "234qde4w"
 
-EXISTED_USERNAME = "bohdan.kanivets1"
-EXISTED_USERNAME_PASS = "234qde2JHLwef"
+FIRST_NAME = "Bohdan"
+LAST_NAME = "Kanivets"
