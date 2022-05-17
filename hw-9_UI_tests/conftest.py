@@ -13,6 +13,9 @@ def run_docker():
     os.system("docker run -d -p 4444:4444 -p 5900:5900 --shm-size=2g "
               "--name CRUD_for_user selenium/standalone-chrome-debug")
     time.sleep(4)
+    yield
+    os.system("docker stop CRUD_for_user")
+    os.system("docker rm /CRUD_for_user")
 
 
 @pytest.fixture(scope="session")
