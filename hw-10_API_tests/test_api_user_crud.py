@@ -1,4 +1,3 @@
-import email
 import json
 import requests
 import pytest
