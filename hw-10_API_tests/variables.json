@@ -5,7 +5,6 @@
   },
   "urls": {
     "base_url": "https://www.aqa.science/",
-    "users": "users/",
-    "user_id": "users/14/"
+    "users": "users/"
   }
 }
