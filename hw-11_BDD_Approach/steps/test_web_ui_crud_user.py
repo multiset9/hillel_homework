@@ -1,18 +1,12 @@
-from pytest_bdd import scenario, given, when, then, parsers
+from pytest_bdd import scenarios, given, when, then, parsers
 from selenium.webdriver.common.by import By
 
-import time
-fearure_file = "../features/web_ui_crud_user.feature"
-scenario_name = "Create New User"
-
-
-@scenario(fearure_file, scenario_name)
-def test():
-    pass
+feature_file = "../features/web_ui_crud_user.feature"
+scenarios(feature_file)
 
 
 @given(parsers.re("I go to the '(?P<add_user_url>.*)' page"))
-def go_to_add_user_page(browser, login, add_user_url):
+def go_to_url(browser, login, add_user_url):
     browser.get(add_user_url)
 
 
@@ -45,13 +39,6 @@ def click_save_button(browser):
     save_button = browser.find_element(
         By.XPATH, '//*[@id="user_form"]/div/div/input[1]')
     save_button.submit()
-    if browser.find_element(
-            By.XPATH,
-            '//*[@id="user_form"]/div/fieldset/div[1]/ul/li').is_displayed():
-        notification = browser.find_element(
-            By.XPATH,
-            '//*[@id="user_form"]/div/fieldset/div[1]/ul/li').text
-        raise Exception(notification)
 
 
 @then(parsers.re("'(?P<change_user>.*)' page is opened"))
@@ -62,9 +49,65 @@ def change_user_page(browser, change_user):
 
 
 @then(parsers.re("The notification '(?P<notification>.*)'"
-                  " is displayed at the top page"))
-def notification_success(browser, notification):
+                 " is displayed at the top page"))
+def notification_success(request, browser, notification):
     notification_success = browser.find_element(
         By.XPATH, '//*[@id="main"]/div/ul/li')
     actual_result = notification_success.text
     assert actual_result == notification
+
+
+@then(parsers.re("The notification '(?P<notification_success>.*)' is shown"))
+def notification_success(browser, notification_success):
+    notification = browser.find_element(By.XPATH, '//*[@id="main"]/div/ul/li')
+    actual_result = notification.text
+    assert actual_result == notification_success
+
+
+@when(parsers.re("I click '(?P<username>.*)' on the page"))
+def find_user(browser, username):
+    user_link = browser.find_element(By.LINK_TEXT, username)
+    user_link.click()
+
+
+@then(parsers.re("'(?P<username>.*)' is shown into the Username field"))
+def verify_username(browser, username):
+    username_field = browser.find_element(By.XPATH, '//*[@id="id_username"]')
+    actual_result = username_field.get_attribute('value')
+    assert actual_result == username
+
+
+@given(parsers.re("I click '(?P<username>.*)' on the page"))
+def find_user(browser, username):
+    user_link = browser.find_element(By.LINK_TEXT, username)
+    user_link.click()
+
+
+@given(parsers.re("Enter '(?P<first_name>.*)' to the first name field"))
+def enter_first_name(browser, first_name):
+    first_name_field = browser.find_element(
+        By.XPATH, '//*[@id="id_first_name"]')
+    first_name_field.click()
+    first_name_field.send_keys(first_name)
+
+
+@given(parsers.re("Enter '(?P<last_name>.*)' to the last name field"))
+def enter_last_name(browser, last_name):
+    last_name_field = browser.find_element(
+        By.XPATH, '//*[@id="id_last_name"]')
+    last_name_field.click()
+    last_name_field.send_keys(last_name)
+
+
+@given("I click on the Delete button")
+def delete_user(browser):
+    delete_button = browser.find_element(
+        By.XPATH, '//*[@id="user_form"]/div/div/p/a')
+    delete_button.click()
+
+
+@when("I click on the Yes, I'm sure button")
+def confirm_deleting(browser):
+    confirm_button = browser.find_element(
+        By.XPATH, '//*[@id="content"]/form/div/input[2]')
+    confirm_button.submit()

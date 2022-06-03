@@ -6,18 +6,18 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-# @pytest.fixture(scope="session")
-# def run_docker():
-#     os.system("docker run -d -p 4444:4444 -p 5900:5900 --shm-size=2g "
-#               "--name CRUD_for_user selenium/standalone-chrome-debug")
-#     time.sleep(4)
-#     # yield
-#     # os.system("docker stop CRUD_for_user")
-#     # os.system("docker rm /CRUD_for_user")
-
-
 @pytest.fixture(scope="session")
-def browser():
+def run_docker():
+    os.system("docker run -d -p 4444:4444 -p 5900:5900 --shm-size=2g "
+              "--name CRUD_for_user selenium/standalone-chrome-debug")
+    time.sleep(4)
+    yield
+    os.system("docker stop CRUD_for_user")
+    os.system("docker rm /CRUD_for_user")
+
+
+@pytest.fixture()
+def browser(run_docker):
     options = webdriver.ChromeOptions()
     options.add_argument('--ignore-ssl-errors=yes')
     options.add_argument('--ignore-certificate-errors=yes')
