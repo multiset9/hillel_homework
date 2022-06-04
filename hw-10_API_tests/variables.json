@@ -1,0 +1,10 @@
+{
+  "users": {
+    "user_admin": "admin",
+    "pass_admin": "admin123"
+  },
+  "urls": {
+    "base_url": "https://www.aqa.science/",
+    "users": "users/"
+  }
+}
