@@ -1,12 +1,11 @@
 from pytest_bdd import scenarios, given, when, then, parsers
 from selenium.webdriver.common.by import By
 
-feature_file = "../features/web_ui_crud_user.feature"
-scenarios(feature_file)
+scenarios("../features/web_ui_crud_user.feature")
 
 
 @given(parsers.re("I go to the '(?P<add_user_url>.*)' page"))
-def go_to_url(browser, login, add_user_url):
+def go_to_url(browser, login_ui, add_user_url):
     browser.get(add_user_url)
 
 

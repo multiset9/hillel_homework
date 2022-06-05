@@ -31,7 +31,7 @@ def browser(run_docker):
 
 
 @pytest.fixture(scope="function")
-def login(browser):
+def login_ui(browser):
     browser.get(BASE_URL)
     input_username = browser.find_element(By.XPATH, '//*[@id="id_username"]')
     input_username.click()
