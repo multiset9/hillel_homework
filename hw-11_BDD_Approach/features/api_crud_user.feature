@@ -13,6 +13,7 @@ Feature: CRUD for user profile API
     Examples:
       | payload                                                    |
       | '{"username": "Jon_Jones", "email": "jon_jones@gmail.com", "group": []}' |
+      | '{"username": "Jon", "email": "jon@gmail.com", "group": []}' |
 
   @apitest
   Scenario Outline: Get created user
@@ -22,6 +23,7 @@ Feature: CRUD for user profile API
     Examples:
       | payload                                                      |
       | '{"username": "Jon_Jones", "email": "jon_jones@gmail.com", "group": []}' |
+      | '{"username": "Jon", "email": "jon@gmail.com", "group": []}' |
 
   @apitest
   Scenario Outline: Update created user
@@ -31,6 +33,7 @@ Feature: CRUD for user profile API
     Examples:
       | payload                                                      |
       | '{"username": "Jon_Richard", "email": "jon_richard@gmail.com"}' |
+      | '{"username": "Richard", "email": "richard@gmail.com"}' |
 
   @apitest
   Scenario: Delete user
