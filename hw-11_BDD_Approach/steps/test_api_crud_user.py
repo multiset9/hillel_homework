@@ -7,12 +7,14 @@ import json
 
 scenarios("../features/api_crud_user.feature")
 
+globalDict = {}
+
 @given(parsers.re("I log in as '(?P<admin>.*)' with '(?P<password>.*)'"
                   " on the '(?P<api_url>.*)' resource"))
 def set_rest_api_url(request, admin, password, api_url):
     pytest.globalDict = {'api_url': api_url, 'login': admin,
                          'password': password}
-    request.session.globalDict = {}
+    # request.session.globalDict = {}
 
 
 @given(parsers.re("I set '(?P<users>.*)' api endpoint"))
@@ -28,7 +30,7 @@ def send_post_request(request, payload, uniq_id):
     response_post = requests.post(url, data,
                                   auth=(pytest.globalDict['login'],
                                         pytest.globalDict['password']))
-    request.session.globalDict.update({f'{uniq_id}': response_post.json()['url']})
+    globalDict.update({f'{uniq_id}': response_post.json()['url']})
     pytest.response = response_post
 
 
@@ -40,7 +42,7 @@ def get_status_code(request, status_code):
 
 @when(parsers.re("I send GET HTTP request to unique user endpoint '(?P<uniq_id>.*)'"))
 def send_get_request(request, uniq_id):
-    url = request.session.globalDict[f'{uniq_id}']
+    url = globalDict[f'{uniq_id}']
     response_get = requests.get(url,
                                 auth=(pytest.globalDict['login'],
                                       pytest.globalDict['password']))
@@ -57,7 +59,7 @@ def valid_payload_response(request, payload):
 @when(parsers.re("I send PUT HTTP request with '(?P<payload>.*)'"
                  " to unique user endpoint '(?P<uniq_id>.*)'"))
 def send_put_request(request, payload, uniq_id):
-    url = request.session.globalDict[f'{uniq_id}']
+    url = globalDict[f'{uniq_id}']
     update_data_user = json.loads(eval(payload))
     response_put = requests.put(url, update_data_user,
                                 auth=(pytest.globalDict['login'],
@@ -68,7 +70,7 @@ def send_put_request(request, payload, uniq_id):
 @when(parsers.re("I send DELETE HTTP request"
                  " to unique user endpoint '(?P<uniq_id>.*)'"))
 def send_delete_request(request, uniq_id):
-    url = request.session.globalDict[f'{uniq_id}']
+    url = globalDict[f'{uniq_id}']
     response_delete = requests.delete(url, auth=(pytest.globalDict['login'],
                                                  pytest.globalDict[
                                                      'password']))

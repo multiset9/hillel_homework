@@ -1,7 +1,7 @@
 
 Feature: CRUD for user profile API
 
-  Scenario: Log in
+  Background:
     Given I log in as 'admin' with 'admin123' on the 'https://www.aqa.science' resource
 
   @apitest
