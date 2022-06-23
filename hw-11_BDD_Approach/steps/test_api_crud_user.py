@@ -9,12 +9,12 @@ scenarios("../features/api_crud_user.feature")
 
 globalDict = {}
 
+
 @given(parsers.re("I log in as '(?P<admin>.*)' with '(?P<password>.*)'"
                   " on the '(?P<api_url>.*)' resource"))
 def set_rest_api_url(request, admin, password, api_url):
     pytest.globalDict = {'api_url': api_url, 'login': admin,
                          'password': password}
-    # request.session.globalDict = {}
 
 
 @given(parsers.re("I set '(?P<users>.*)' api endpoint"))
